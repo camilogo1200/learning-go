@@ -28,14 +28,14 @@ func main() {
 	concatenatedString = concatenatedString + " - " + newString + " - concatenated String"
 	fmt.Println(concatenatedString)
 
-	//Go has a type taht representa single code point. -> The rune type
-	//rune type is an alias for the int32 type, just as alias is an alias for uint8
+	//Go has a type that represents a single code point. -> The rune type
+	//is an alias for the int32 type, just as alias is an alias for uint8
 	//if you're referring to a character use -> rune type, not the int32 type
 
 	var myFirstInitial = 'C'
 	runeEmoji := '🔥'
 	var birthdayMonth = 11
-	fmt.Println("My First initial " + string(myFirstInitial))
+	fmt.Println("My First initial [" + string(myFirstInitial) + "] variable type : " + fmt.Sprintf("%T", myFirstInitial))
 
 	var b strings.Builder
 	b.WriteString("My First rune emoji: ")
