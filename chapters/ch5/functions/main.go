@@ -35,6 +35,10 @@ func main() {
 	sum, _ = addition(slice...)
 	fmt.Printf("sum = {%d}\n", sum)
 
+	//you can declare a function variable -> functions are values
+	var myfuncVariable func(...int) (int, error)
+	myfuncVariable = addition
+	myfuncVariable()
 }
 
 type MyFuncOpts struct {
