@@ -7,6 +7,10 @@ import (
 	"os"
 )
 
+const (
+	BufferFileSize = 2048
+)
+
 // cat sample program
 func main() {
 	//in Go teh cleanup code is attached to the function with the `defer` keyword
@@ -20,7 +24,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("error opening file [%v], error ={%v}", params[1], err)
 	}
-
+	//you can use a function method , or closure with defer
 	defer func(f *os.File) {
 		err := f.Close()
 		if err != nil {
@@ -28,7 +32,7 @@ func main() {
 		}
 	}(f)
 
-	data := make([]byte, 2048)
+	data := make([]byte, BufferFileSize)
 	for {
 		count, err := f.Read(data)
 		if err != nil {
@@ -42,5 +46,9 @@ func main() {
 			log.Fatalf("fatal error on write on stdOut. err ={%v}", err)
 		}
 	}
+	//you can defer multiple functions in a Go function.
+	//they run in a last-in, first-out in a stack way basically (LIFO) order
 
+	//the code  within defer functions runs after the return statement
+	//You can return values in a `defer`, but there is no a way to read those values
 }
