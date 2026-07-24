@@ -9,33 +9,33 @@ import (
 )
 
 func main() {
-	open_resource_traditional()
+	OpenResource()
 }
 
-func open_resource_traditional() (string, error) {
+func OpenResource() (string, error) {
 
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 
 	r, err := os.Open("main.go")
 	if err != nil {
-		logger.Warn("Error opening file", err)
+		logger.Warn("Error opening file")
 		return "", errors.New("cannot find file on directory")
 	}
 	defer func(r *os.File) {
 		err := r.Close()
 		if err != nil {
-			logger.Error("error closing file", err)
+			logger.Error("error closing file")
 		}
 	}(r)
 
 	bufferSize := 100
-	buffer := make([]byte, bufferSize)
+	buffer := make([]byte, bufferSize) //reuses the buffer creation outside the for, to avoid heap allocation of new slice / arrays
 	var text []string
 	for {
 		countDataRead, readErr := r.Read(buffer)
 		if readErr != nil {
 			if errors.Is(readErr, io.EOF) {
-				logger.Debug("EOF", readErr)
+				logger.Debug("EOF")
 				break
 			} else {
 				return "", readErr
