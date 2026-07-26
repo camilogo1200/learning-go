@@ -26,7 +26,6 @@ func main() {
 	fmt.Printf(" Pointer memory address = {%v} - value ={%v}\n", pointertoInt, *pointertoInt)
 
 	//The built-in function `new` creates a pointer variable. it returns a pointer to a zero value instance of the provided type
-
 	var booleanPtr = new(bool)
 	var floatPtr = new(float32)
 
@@ -38,21 +37,25 @@ func main() {
 	personPtr := &person{}
 	fmt.Printf("personPtr is null ={%v} - memory address ={%v} - initial value = {%v}\n", personPtr == nil, personPtr, *personPtr)
 
-	person2Ptr := &person{
+	person2Ptr := new(person)
+
+	fmt.Printf("person2Ptr is null ={%v} - memory address ={%v} - initial value = {%v}\n", person2Ptr == nil, person2Ptr, *person2Ptr)
+
+	person3Ptr := &person{
 		Name:       "Cris",
 		MiddleName: makePointer("Johnson"),
 		Lastname:   "Specter",
 		Age:        33,
 	}
-	fmt.Printf("person2Ptr is null ={%v} - memory address ={%v} - initial value = {%v}\n", person2Ptr == nil, person2Ptr, *person2Ptr)
+	fmt.Printf("person2Ptr is null ={%v} - memory address ={%v} - initial value = {%v}\n", person3Ptr == nil, person3Ptr, *person3Ptr)
 
-	person3Ptr := &person{
+	person4Ptr := &person{
 		Name:       "Katty",
 		MiddleName: new("Johnson"),
 		Lastname:   "Newark",
 		Age:        33,
 	}
-	fmt.Printf("person2Ptr is null ={%v} - memory address ={%v} - initial value = {%v}\n", person3Ptr == nil, person3Ptr, *person3Ptr)
+	fmt.Printf("person4Ptr is null ={%v} - memory address ={%v} - initial value = {%v}\n", person4Ptr == nil, person4Ptr, *person4Ptr)
 
 	//to change the value on a pointer function parameter you need to dereference if not the values is not changed
 	demo := "hello"

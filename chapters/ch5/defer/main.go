@@ -13,7 +13,7 @@ const (
 
 // cat sample program
 func main() {
-	//in Go teh cleanup code is attached to the function with the `defer` keyword
+	//in Go the cleanup code is attached to the function with the `defer` keyword
 	fmt.Printf("total args (%v), args = {%v}\n", len(os.Args), os.Args)
 	params := os.Args
 	if len(params) < 2 {
