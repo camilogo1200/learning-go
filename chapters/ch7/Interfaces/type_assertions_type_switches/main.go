@@ -27,10 +27,9 @@ func main() {
 	}
 
 	// when an interface could be one of multiple possible types, use a type switch
-
 	switch j := i.(type) {
 	case nil:
-		//i is nil, type of j is any
+		//i variable is nil, type of j is any
 		fmt.Println("i is nil")
 	case int:
 		fmt.Println("j is of type int", j)
