@@ -70,7 +70,7 @@ func (sl SimpleLogic) SayGoodbye(userId string) (string, error) {
 	return "Hello, " + name, nil
 }
 
-//whe you want a SImpeLogic instace, you call a factory function, passing interfaces as parameters and returning concrete classes  or (structs)
+//whe you want a SimpleLogic instance, you call a factory function, passing interfaces as parameters and returning concrete classes  or (structs)
 
 func NewSimpleLogic(l Logger, ds SimpleDataStore) SimpleLogic {
 	return SimpleLogic{

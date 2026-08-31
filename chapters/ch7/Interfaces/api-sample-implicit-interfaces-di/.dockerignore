@@ -1,0 +1,5 @@
+.git/
+deployments/
+*.md
+*_test.go
+
