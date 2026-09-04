@@ -22,6 +22,10 @@ func main() {
 
 	_, ok := createRoutes(mux)
 
+	if ok != nil {
+
+	}
+
 	server := &http.Server{
 		Addr:              ":8080",
 		Handler:           mux,
