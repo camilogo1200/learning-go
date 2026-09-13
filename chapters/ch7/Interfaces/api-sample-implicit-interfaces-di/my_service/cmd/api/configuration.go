@@ -22,7 +22,7 @@ func LoadConfig() (ServerConfiguration, error) {
 	var errs []error
 	srvCfg := ServerConfiguration{
 		HTTPAddr:          getEnvVarOrDefault("HTTP_ADDR", ":8080", &errs),
-		DatabaseURL:       getEnvVar("DATABASE_URL", *errs),
+		DatabaseURL:       getEnvVar("DATABASE_URL",&errs),
 		ShutdownTimeout:   getEnvDurationVarOrDefault("SHUTDOWN_TIMEOUT", 10*time.Second, &errs),
 		OutboxRelayOn:     getEnvBooleanVarOrDefault("OUTBOX_RELAY", false, &errs),
 		LogLevel:          getEnvVarOrDefault("LOG_LEVEL", "info", &errs),
@@ -50,5 +50,4 @@ func getEnvVarOrDefault(name string, defaultValue string, errors *[]error) strin
 func getEnvDurationVarOrDefault(name string, duration time.Duration, errors *[]error) time.Duration {
 }
 
-func loadConfigurationFile(filename string) (ServerConfiguration, error) {
-}
+func loadConfigurationFile(filename string) (ServerConfiguratioasddsdawews
