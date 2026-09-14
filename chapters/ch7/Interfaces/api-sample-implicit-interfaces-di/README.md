@@ -58,7 +58,7 @@ git clone https://github.com/example/taskservice.git
 cd taskservice
 cp deployments/compose/.env.example deployments/compose/.env
 
-make up            # postgres → migrate → api, in that order, health-gated
+make up            # postgres → migrate → app, in that order, health-gated
 curl -s localhost:8080/healthz
 ```
 

@@ -1,55 +1,20 @@
-package main
+package config
 
 import (
 	"errors"
 	"fmt"
 	"log/slog"
-	"net/http"
 	"os"
 	"strings"
 	"time"
 )
 
-func main() {
-	//# wiring, flags, signal handling.
-	logger, err := createLogger()
-
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-
-	mux := http.NewServeMux()
-
-	_, ok := createRoutes(mux)
-
-	if ok != nil {
-
-	}
-
-	server := &http.Server{
-		Addr:              ":8080",
-		Handler:           mux,
-		ReadTimeout:       10 * time.Second,
-		ReadHeaderTimeout: 7 * time.Second,
-		WriteTimeout:      30 * time.Second,
-		IdleTimeout:       90 * time.Second,
-	}
-
-	go func() {
-		err := server.ListenAndServe()
-		if !errors.Is(err, http.ErrServerClosed) {
-			logger.Error(err.Error())
-		}
-	}()
-
-}
-
-func createLogger() (*slog.Logger, error) {
+func CreateLogger() (*slog.Logger, error) {
 	consoleHandler := slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
 		Level: slog.LevelInfo,
 	})
 	replacer := strings.NewReplacer(":", "_", " ", "_")
-	logFileName := replacer.Replace(time.Now().Format(time.RubyDate))
+	logFileName := replacer.Replace(time.Now().Format(time.RFC3339))
 	logFile, err := os.OpenFile(logFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 
 	if err != nil {
